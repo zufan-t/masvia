@@ -52,3 +52,33 @@ npm run build
 npm run start
 ```
 
+---
+
+## 📁 Struktur Direktori Project
+
+```text
+masvia-web/
+├── design-assets/           # Mockup desain asli & gambar kemasan mentah
+│   ├── mockups/             # Landingpage.png, Produk.png, Tentang.png
+│   └── raw-packaging/       # Logo & kemasan pouch resolusi tinggi
+├── public/                  # Asset web statis
+│   ├── favicon.ico          # Favicon browser multi-ukuran
+│   └── images/              # Foto produk, bahan herbal, logo Masvia
+├── src/
+│   ├── app/                 # Next.js App Router
+│   │   ├── faq/page.tsx     # Halaman Pertanyaan Umum (FAQ)
+│   │   ├── produk/page.tsx  # Halaman Produk & Checkout Form
+│   │   ├── tentang/page.tsx # Halaman Tentang Masvia
+│   │   ├── apple-icon.png   # Icon web untuk perangkat Apple
+│   │   ├── globals.css      # Konfigurasi tema Tailwind v4 & keyframes
+│   │   ├── icon.png         # Logo icon HTML header (512x512)
+│   │   ├── layout.tsx       # Root layout persistent dengan Navbar & Footer
+│   │   └── page.tsx         # Halaman Beranda (Landing Page)
+│   └── components/
+│       ├── Footer.tsx       # Komponen Footer terintegrasi
+│       └── Navbar.tsx       # Komponen Navbar dengan sliding indicator
+├── design.md                # Spesifikasi font, tombol referensi & template WA
+├── next.config.ts           # Konfigurasi Next.js
+└── package.json             # Dependensi project Next.js & React
+```
+

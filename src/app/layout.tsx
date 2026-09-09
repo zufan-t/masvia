@@ -22,7 +22,12 @@ export const metadata: Metadata = {
   description:
     "Kebaikan Alam dalam Setiap Seduhan. Minuman herbal praktis rendah gula berbahan dasar buah Mahkota Dewa dan daun Stevia alami.",
   icons: {
-    icon: "/images/logo-masvia.png",
+    icon: [
+      { url: "/favicon.ico" },
+      { url: "/images/logo-masvia.png", type: "image/png" },
+    ],
+    apple: "/images/logo-masvia.png",
+    shortcut: "/favicon.ico",
   },
 };
 
