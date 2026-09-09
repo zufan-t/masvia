@@ -1,36 +1,54 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Website Resmi Jamu Celup Masvia
 
-## Getting Started
+Website produk herbal **Masvia (Jamu Celup Mahkota Dewa & Daun Stevia)** dibangun dengan **Next.js 16 (App Router)**, **React 19**, **Tailwind CSS v4**, dan **Phosphor Icons**.
 
-First, run the development server:
+Website ini dirancang **responsif di semua perangkat** (Mobile, Tablet, Desktop) dengan sistem pemesanan langsung terhubung ke **WhatsApp**.
+
+---
+
+## 🌿 Fitur & Halaman
+
+1. **Beranda (`/`)**
+   - Hero section dengan tipografi display *Anton*, kemasan pouch produk melayang, dan kategori jamu celup herbal.
+   - Seksi "Kenapa Masvia?" (Praktis, Nyaman Diminum, Herbal).
+   - Seksi "Apa itu Masvia?" dengan sorotan bahan utama (Buah Mahkota Dewa & Daun Stevia).
+   - Seksi "Cara Konsumsi" dengan 4 langkah seduhan bergantian (hijau & krem).
+   - Banner CTA "Yuk Cobain!" dengan tombol langsung ke pemesanan.
+
+2. **Produk & Form Pemesanan (`/produk`)**
+   - Showcase visual kemasan tampak depan & belakang (*twin pack*).
+   - Form pemesanan interaktif (Nama, Opsi Pengambilan khusus Semarang/Demak dengan kurir atau ambil sendiri, Jumlah bungkus, Metode Pembayaran Cash / Cashless).
+   - Live Order Summary: Preview ringkasan pesanan real-time.
+   - Tombol **"Beli sekarang"** yang langsung memformat dan membuka pesan otomatis ke WhatsApp Admin (`0821-4569-052`) sesuai template di `design.md`.
+
+3. **Tentang Masvia (`/tentang`)**
+   - Latar belakang kehadiran Masvia berdasarkan data statistik diabetes nasional (IDF 2021 & SKI 2023).
+   - Edukasi manfaat senyawa aktif Mahkota Dewa dan manis alami daun Stevia 0 kalori.
+
+4. **FAQ (`/faq`)**
+   - Accordion interaktif seputar legalitas/BPOM, keamanan diabetes, cara seduh, jangkauan pengiriman, dan cara order.
+
+5. **Footer & Navigasi Terintegrasi**
+   - WhatsApp link: `https://wa.me/628214569052`
+   - Instagram link: `https://instagram.com/masvia2026`
+   - Email link: `mailto:jamumasvia@gmail.com`
+
+---
+
+## 🛠️ Menjalankan Project
+
+Jalankan server development:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Buka [http://localhost:3000](http://localhost:3000) di browser.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Build Produksi
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npm run build
+npm run start
+```
 
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.

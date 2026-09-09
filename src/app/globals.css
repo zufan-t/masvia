@@ -1,26 +1,41 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+@theme {
+  --font-anton: var(--font-anton), sans-serif;
+  --font-sans: var(--font-plus-jakarta-sans), sans-serif;
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --color-masvia-green: #306D29;
+  --color-masvia-green-light: #447B3E;
+  --color-masvia-green-dark: #22511C;
+  --color-masvia-cream: #FBF5DD;
+  --color-masvia-cream-light: #FFFDF5;
+  --color-masvia-cream-dark: #EBE6D0;
+  --color-masvia-dark: #1A1A1A;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: #306D29;
+  color: #FFFFFF;
+  font-family: var(--font-plus-jakarta-sans), sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+.font-anton {
+  font-family: var(--font-anton), sans-serif;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-slide-down {
+  animation: slideDown 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
