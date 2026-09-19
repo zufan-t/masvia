@@ -25,31 +25,60 @@ export default function Footer() {
             <div className="pt-2">
               <p className="text-sm font-semibold mb-3">More info:</p>
               <div className="flex items-center gap-4 text-2xl">
-                <a
-                  href="https://instagram.com/masvia2026"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="Instagram Masvia"
-                  className="w-10 h-10 rounded-full bg-white/80 hover:bg-black hover:text-white flex items-center justify-center transition-all duration-200 shadow-sm hover:scale-110"
-                >
-                  <InstagramLogo size={22} weight="bold" />
-                </a>
-                <a
-                  href="https://wa.me/628214569052"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="WhatsApp Masvia"
-                  className="w-10 h-10 rounded-full bg-white/80 hover:bg-[#306D29] hover:text-white flex items-center justify-center transition-all duration-200 shadow-sm hover:scale-110"
-                >
-                  <WhatsappLogo size={22} weight="fill" />
-                </a>
-                <a
-                  href="mailto:jamumasvia@gmail.com"
-                  aria-label="Email Masvia"
-                  className="w-10 h-10 rounded-full bg-white/80 hover:bg-black hover:text-white flex items-center justify-center transition-all duration-200 shadow-sm hover:scale-110"
-                >
-                  <EnvelopeSimple size={22} weight="bold" />
-                </a>
+                {/* Instagram */}
+                <div className="relative group">
+                  <a
+                    href="https://instagram.com/masvia2026"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="Instagram Masvia"
+                    className="w-10 h-10 rounded-full bg-white/80 hover:bg-[#E1306C] hover:text-white flex items-center justify-center transition-all duration-200 shadow-sm hover:scale-110"
+                  >
+                    <InstagramLogo size={22} weight="bold" />
+                  </a>
+                  <div className="pointer-events-none absolute -top-12 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-all duration-200 z-30 flex flex-col items-center">
+                    <span className="bg-[#1A1A1A] text-white text-xs font-semibold px-3 py-1.5 rounded-lg shadow-lg whitespace-nowrap">
+                      Instagram @masvia2026
+                    </span>
+                    <span className="w-2 h-2 bg-[#1A1A1A] rotate-45 -mt-1"></span>
+                  </div>
+                </div>
+
+                {/* WhatsApp */}
+                <div className="relative group">
+                  <a
+                    href="https://wa.me/628214569052"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="WhatsApp Masvia"
+                    className="w-10 h-10 rounded-full bg-white/80 hover:bg-[#306D29] hover:text-white flex items-center justify-center transition-all duration-200 shadow-sm hover:scale-110"
+                  >
+                    <WhatsappLogo size={22} weight="fill" />
+                  </a>
+                  <div className="pointer-events-none absolute -top-12 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-all duration-200 z-30 flex flex-col items-center">
+                    <span className="bg-[#1A1A1A] text-white text-xs font-semibold px-3 py-1.5 rounded-lg shadow-lg whitespace-nowrap">
+                      WhatsApp CS Masvia
+                    </span>
+                    <span className="w-2 h-2 bg-[#1A1A1A] rotate-45 -mt-1"></span>
+                  </div>
+                </div>
+
+                {/* Email */}
+                <div className="relative group">
+                  <a
+                    href="mailto:jamumasvia@gmail.com"
+                    aria-label="Email Masvia"
+                    className="w-10 h-10 rounded-full bg-white/80 hover:bg-[#1A1A1A] hover:text-white flex items-center justify-center transition-all duration-200 shadow-sm hover:scale-110"
+                  >
+                    <EnvelopeSimple size={22} weight="bold" />
+                  </a>
+                  <div className="pointer-events-none absolute -top-12 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-all duration-200 z-30 flex flex-col items-center">
+                    <span className="bg-[#1A1A1A] text-white text-xs font-semibold px-3 py-1.5 rounded-lg shadow-lg whitespace-nowrap">
+                      Email jamumasvia@gmail.com
+                    </span>
+                    <span className="w-2 h-2 bg-[#1A1A1A] rotate-45 -mt-1"></span>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
