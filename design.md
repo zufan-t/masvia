@@ -17,7 +17,7 @@ Nama: xxx
 Opsi pengambilan: xxx
 Alamat: xxx
 Metode pembayaran: xxx
-Jumlah barang: xxx bungkus
+Jumlah barang: xxx pouch
 Total pembelian: Rpxxx
 Terimakasih!
 

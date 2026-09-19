@@ -9,7 +9,7 @@ export default function TentangPage() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-16 items-center">
               {/* Left Column: TENTANG at top, Front Pouch below it */}
               <div className="flex flex-col items-center md:items-start space-y-6 md:space-y-8">
-                <h1 className="font-anton text-6xl sm:text-7xl md:text-8xl lg:text-9xl tracking-tight text-white uppercase leading-none">
+                <h1 className="font-anton text-5xl sm:text-7xl md:text-8xl lg:text-9xl tracking-tight text-white uppercase leading-none text-center md:text-left">
                   TENTANG
                 </h1>
                 <div className="w-48 sm:w-60 md:w-72 lg:w-80 filter drop-shadow-[-16px_24px_30px_rgba(0,0,0,0.7)] rotate-[-3deg] transition-transform duration-300 hover:scale-105 hover:rotate-0">
@@ -36,7 +36,7 @@ export default function TentangPage() {
                     priority
                   />
                 </div>
-                <h2 className="font-anton text-6xl sm:text-7xl md:text-8xl lg:text-9xl tracking-tight text-white uppercase leading-none text-right">
+                <h2 className="font-anton text-5xl sm:text-7xl md:text-8xl lg:text-9xl tracking-tight text-white uppercase leading-none text-center md:text-right">
                   MASVIA
                 </h2>
               </div>

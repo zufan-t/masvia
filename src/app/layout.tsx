@@ -23,11 +23,11 @@ export const metadata: Metadata = {
     "Kebaikan Alam dalam Setiap Seduhan. Minuman herbal praktis rendah gula berbahan dasar buah Mahkota Dewa dan daun Stevia alami.",
   icons: {
     icon: [
+      { url: "/icon.png", type: "image/png" },
       { url: "/favicon.ico" },
-      { url: "/images/logo-masvia.png", type: "image/png" },
     ],
-    apple: "/images/logo-masvia.png",
-    shortcut: "/favicon.ico",
+    apple: "/icon.png",
+    shortcut: "/icon.png",
   },
 };
 
@@ -39,9 +39,9 @@ export default function RootLayout({
   return (
     <html
       lang="id"
-      className={`${anton.variable} ${plusJakartaSans.variable} scroll-smooth`}
+      className={`${anton.variable} ${plusJakartaSans.variable}`}
     >
-      <body className="min-h-full flex flex-col font-sans bg-[#306D29] text-white selection:bg-[#FBF5DD] selection:text-[#1A1A1A] antialiased">
+      <body className="min-h-full flex flex-col font-sans bg-[#306D29] text-white selection:bg-[#FBF5DD] selection:text-[#1A1A1A] antialiased overflow-x-hidden">
         <Navbar />
         {children}
         <Footer />

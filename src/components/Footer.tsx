@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import Link from "next/link";
 import Image from "next/image";
@@ -103,7 +103,7 @@ export default function Footer() {
                 alt="Masvia Badge"
                 width={140}
                 height={140}
-                className="w-full h-full object-contain"
+                className="w-full h-full object-contain rounded-full"
               />
             </div>
           </div>

@@ -1,38 +1,12 @@
 import Image from "next/image";
 import Link from "next/link";
+import HeroSection from "@/components/HeroSection";
 
 export default function Home() {
   return (
     <main className="flex-grow">
         {/* HERO SECTION */}
-        <section className="relative pt-12 sm:pt-20 md:pt-28 pb-16 md:pb-24 overflow-visible">
-          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            {/* Massive Brand Name Behind Product */}
-            <div className="relative flex items-center justify-center py-6 sm:py-10 md:py-16">
-              <h1 className="font-anton text-[22vw] md:text-[200px] lg:text-[240px] leading-none tracking-normal text-[#FBF5DD] select-none opacity-95 drop-shadow-[0_12px_24px_rgba(0,0,0,0.35)]">
-                MASVIA
-              </h1>
-
-              {/* Centered Product Pouch Mockup with enhanced 3D drop shadow and 15deg hover rotation */}
-              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-44 sm:w-60 md:w-72 lg:w-84 xl:w-96 z-10 filter drop-shadow-[-16px_22px_28px_rgba(0,0,0,0.7)] drop-shadow-[0_15px_30px_rgba(0,0,0,0.5)] transition-transform duration-500 ease-out hover:rotate-[15deg] hover:scale-105 pointer-events-auto cursor-pointer">
-                <Image
-                  src="/images/masvia-front.png"
-                  alt="Kemasan Jamu Celup Masvia"
-                  width={400}
-                  height={550}
-                  className="w-full h-auto object-contain max-h-[85vh]"
-                  priority
-                />
-              </div>
-            </div>
-
-            {/* Sub-tags flanking the hero */}
-            <div className="flex items-center justify-between max-w-2xl mx-auto mt-12 md:mt-20 px-4 text-base sm:text-xl font-medium tracking-wide">
-              <span className="text-[#FBF5DD]/90">Jamu celup</span>
-              <span className="text-[#FBF5DD]/90">Herbal</span>
-            </div>
-          </div>
-        </section>
+        <HeroSection />
 
         {/* SECTION: KENAPA MASVIA? (Exact match with design: 3 contiguous flush columns) */}
         <section className="py-16 md:py-24 border-t border-[#447B3E]/40">
@@ -40,7 +14,7 @@ export default function Home() {
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
               {/* Section Title on the Left */}
               <div className="lg:col-span-4">
-                <h2 className="font-anton text-5xl sm:text-6xl md:text-7xl leading-[1.05] tracking-wide text-white uppercase">
+                <h2 className="font-anton text-5xl sm:text-6xl md:text-6xl lg:text-7xl leading-[1.05] tracking-wide text-white uppercase">
                   KENAPA
                   <br />
                   MASVIA?
@@ -49,35 +23,35 @@ export default function Home() {
 
               {/* 3 Contiguous Columns matching design mockup */}
               <div className="lg:col-span-8">
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-0 shadow-2xl overflow-hidden">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-0 shadow-2xl overflow-hidden rounded-2xl md:rounded-none">
                   {/* Column 1: PRAKTIS (Cream) */}
-                  <div className="bg-[#FBF5DD] text-[#1A1A1A] p-8 lg:p-10 min-h-[340px] md:min-h-[400px] flex flex-col justify-between transition-colors">
+                  <div className="bg-[#FBF5DD] text-[#1A1A1A] p-6 sm:p-7 md:p-6 lg:p-8 xl:p-10 min-h-[280px] sm:min-h-[320px] md:min-h-[380px] flex flex-col justify-between transition-colors">
                     <h3 className="font-anton text-3xl sm:text-4xl tracking-wide uppercase text-[#1A1A1A]">
                       PRAKTIS
                     </h3>
-                    <p className="text-sm sm:text-base leading-relaxed text-[#1A1A1A] font-medium mt-8">
+                    <p className="text-sm sm:text-base leading-relaxed text-[#1A1A1A] font-medium mt-6 sm:mt-8">
                       Gaya hidup modern membuat banyak orang membutuhkan pilihan minuman kesehatan yang praktis.
                     </p>
                   </div>
 
                   {/* Column 2: NYAMAN DIMINUM (Green background matching page) */}
-                  <div className="bg-[#306D29] text-white p-8 lg:p-10 min-h-[340px] md:min-h-[400px] flex flex-col justify-between border-y md:border-y-0 md:border-x border-[#447B3E]/40 transition-colors">
+                  <div className="bg-[#306D29] text-white p-6 sm:p-7 md:p-6 lg:p-8 xl:p-10 min-h-[280px] sm:min-h-[320px] md:min-h-[380px] flex flex-col justify-between border-y md:border-y-0 md:border-x border-[#447B3E]/40 transition-colors">
                     <h3 className="font-anton text-3xl sm:text-4xl tracking-wide uppercase text-white leading-tight">
                       NYAMAN
                       <br />
                       DIMINUM
                     </h3>
-                    <p className="text-sm sm:text-base leading-relaxed text-white font-medium mt-8">
+                    <p className="text-sm sm:text-base leading-relaxed text-white font-medium mt-6 sm:mt-8">
                       Rasa manis dari daun Stevia membuat jamu dapat dikonsumsi tanpa tambahan gula pasir.
                     </p>
                   </div>
 
                   {/* Column 3: HERBAL (Cream) */}
-                  <div className="bg-[#FBF5DD] text-[#1A1A1A] p-8 lg:p-10 min-h-[340px] md:min-h-[400px] flex flex-col justify-between transition-colors">
+                  <div className="bg-[#FBF5DD] text-[#1A1A1A] p-6 sm:p-7 md:p-6 lg:p-8 xl:p-10 min-h-[280px] sm:min-h-[320px] md:min-h-[380px] flex flex-col justify-between transition-colors">
                     <h3 className="font-anton text-3xl sm:text-4xl tracking-wide uppercase text-[#1A1A1A]">
                       HERBAL
                     </h3>
-                    <p className="text-sm sm:text-base leading-relaxed text-[#1A1A1A] font-medium mt-8">
+                    <p className="text-sm sm:text-base leading-relaxed text-[#1A1A1A] font-medium mt-6 sm:mt-8">
                       Dibuat dari kombinasi buah Mahkota Dewa dan daun Stevia sebagai bahan herbal alami yang dipilih untuk menemani gaya hidup sehat.
                     </p>
                   </div>
@@ -172,7 +146,7 @@ export default function Home() {
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
             {/* Heading ABOVE the step points */}
             <div className="text-center mb-10 md:mb-16">
-              <h2 className="font-anton text-5xl sm:text-6xl md:text-7xl lg:text-8xl tracking-tight text-white uppercase">
+              <h2 className="font-anton text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl tracking-tight text-white uppercase">
                 CARA KONSUMSI
               </h2>
             </div>
@@ -241,7 +215,7 @@ export default function Home() {
 
               {/* Text & Button */}
               <div className="flex flex-col items-center md:items-start text-center md:text-left gap-6">
-                <h2 className="font-anton text-5xl sm:text-6xl md:text-7xl tracking-wide text-white uppercase">
+                <h2 className="font-anton text-4xl sm:text-5xl md:text-6xl lg:text-7xl tracking-wide text-white uppercase">
                   YUK COBAIN!
                 </h2>
                 <Link

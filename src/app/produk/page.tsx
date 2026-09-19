@@ -10,7 +10,7 @@ import {
   Storefront,
 } from "@phosphor-icons/react";
 
-const PRICE_PER_PACK = 25000; // Rp 25.000 per pouch (10 gram, 5 kantong celup)
+const PRICE_PER_PACK = 15000; // Rp 15.000 per pouch (10 gram, 5 kantong celup)
 
 export default function ProdukPage() {
   const [nama, setNama] = useState("");
@@ -20,18 +20,21 @@ export default function ProdukPage() {
   const [metodeBayar, setMetodeBayar] = useState<"Cash" | "Cashless">("Cash");
   const [bankOption, setBankOption] = useState("QRIS");
   const [addedNotice, setAddedNotice] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
+  const [submittedData, setSubmittedData] = useState<{
+    nama: string;
+    opsiPengambilan: string;
+    alamat: string;
+    qty: number;
+    metode: string;
+    totalFormatted: string;
+  } | null>(null);
 
-  // Computed Values
+  // Computed Values from form inputs
   const qty = typeof jumlah === "number" ? Math.max(1, jumlah) : parseInt(jumlah) || 1;
   const totalPembelian = qty * PRICE_PER_PACK;
 
-  const displayNama = nama.trim() || "AAAA BBBBB CCCCC";
-  const displayAlamat =
-    opsiPengambilan === "Ambil sendiri"
-      ? "Ambil sendiri di tempat (Semarang/Demak)"
-      : alamat.trim() || "Jl. xx, Desa xxx, Kec. xxx, Kota/Kab. xxx";
-
-  const displayMetode =
+  const currentMetode =
     metodeBayar === "Cash" ? "Cash" : `Cashless (${bankOption})`;
 
   const formattedTotal = new Intl.NumberFormat("id-ID", {
@@ -40,22 +43,55 @@ export default function ProdukPage() {
     maximumFractionDigits: 0,
   }).format(totalPembelian);
 
+  // Text data from form is '-' if before submit
+  const displayNama = submittedData ? submittedData.nama : "-";
+  const displayAlamat = submittedData ? submittedData.alamat : "-";
+  const displayJumlah = submittedData ? `${submittedData.qty} pouch` : "-";
+  const displayMetode = submittedData ? submittedData.metode : "-";
+  const displayTotal = submittedData ? submittedData.totalFormatted : "-";
+
   // Generate WhatsApp Message according to template in design.md
   const handleWhatsAppCheckout = () => {
-    const finalNama = nama.trim() || "Pelanggan Masvia";
-    const finalAlamat =
-      opsiPengambilan === "Ambil sendiri"
-        ? "Ambil Sendiri di tempat"
-        : alamat.trim() || "Kota Semarang / Kab. Demak";
+    let orderToUse = submittedData;
+
+    if (!orderToUse) {
+      if (!nama.trim()) {
+        setErrorMessage("Silakan lengkapi formulir dan klik 'Masukkan keranjang' terlebih dahulu.");
+        document.getElementById("order-form")?.scrollIntoView({ behavior: "smooth" });
+        return;
+      }
+      if (opsiPengambilan === "Dikirim kurir" && !alamat.trim()) {
+        setErrorMessage("Silakan masukkan alamat pengiriman Anda.");
+        document.getElementById("order-form")?.scrollIntoView({ behavior: "smooth" });
+        return;
+      }
+
+      const finalAlamat =
+        opsiPengambilan === "Ambil sendiri"
+          ? "Ambil sendiri di tempat (Semarang/Demak)"
+          : alamat.trim();
+
+      const newOrder = {
+        nama: nama.trim(),
+        opsiPengambilan,
+        alamat: finalAlamat,
+        qty,
+        metode: currentMetode,
+        totalFormatted: formattedTotal,
+      };
+
+      setSubmittedData(newOrder);
+      orderToUse = newOrder;
+    }
 
     const message = `Halo Kak!
 Aku mau pesan jamu Masvia dengan keterangan berikut
-Nama: ${finalNama}
-Opsi pengambilan: ${opsiPengambilan}
-Alamat: ${finalAlamat}
-Metode pembayaran: ${displayMetode}
-Jumlah barang: ${qty} bungkus
-Total pembelian: ${formattedTotal}
+Nama: ${orderToUse.nama}
+Opsi pengambilan: ${orderToUse.opsiPengambilan}
+Alamat: ${orderToUse.alamat}
+Metode pembayaran: ${orderToUse.metode}
+Jumlah barang: ${orderToUse.qty} pouch
+Total pembelian: ${orderToUse.totalFormatted}
 Terimakasih!`;
 
     const encodedMessage = encodeURIComponent(message);
@@ -65,6 +101,32 @@ Terimakasih!`;
 
   const handleAddToCart = (e: React.FormEvent) => {
     e.preventDefault();
+    setErrorMessage("");
+
+    if (!nama.trim()) {
+      setErrorMessage("Silakan isi nama Anda terlebih dahulu.");
+      return;
+    }
+
+    if (opsiPengambilan === "Dikirim kurir" && !alamat.trim()) {
+      setErrorMessage("Silakan isi alamat pengiriman Anda.");
+      return;
+    }
+
+    const finalAlamat =
+      opsiPengambilan === "Ambil sendiri"
+        ? "Ambil sendiri di tempat (Semarang/Demak)"
+        : alamat.trim();
+
+    setSubmittedData({
+      nama: nama.trim(),
+      opsiPengambilan,
+      alamat: finalAlamat,
+      qty,
+      metode: currentMetode,
+      totalFormatted: formattedTotal,
+    });
+
     setAddedNotice(true);
     setTimeout(() => setAddedNotice(false), 3000);
   };
@@ -91,7 +153,7 @@ Terimakasih!`;
 
               {/* Order Form Card (Cream Container) */}
               <div className="bg-[#FBF5DD] text-[#1A1A1A] rounded-3xl p-6 sm:p-8 md:p-10 shadow-xl">
-                <form onSubmit={handleAddToCart} className="space-y-6">
+                <form id="order-form" onSubmit={handleAddToCart} className="space-y-6">
                   {/* Field: Nama */}
                   <div>
                     <label className="block text-base sm:text-lg font-bold mb-2 text-[#1A1A1A]">
@@ -112,7 +174,7 @@ Terimakasih!`;
                       Opsi pengambilan
                     </label>
                     <p className="text-xs sm:text-sm text-[#1A1A1A]/70 mb-3 font-medium">
-                      *Hanya bisa disekitar Kota Semarang dan Kabupaten Demak
+                      *Gratis ongkir untuk area UNNES (Sekaran, Patemon, Kalisegoro, Ngijo). Area lain disekitar Kota Semarang &amp; Kab. Demak dikenakan biaya ongkir.
                     </p>
 
                     <div className="space-y-3">
@@ -128,7 +190,7 @@ Terimakasih!`;
                         />
                         <span className="font-semibold text-sm sm:text-base flex items-center gap-2">
                           <Truck size={18} weight="bold" />
-                          Dikirim kurir (ada biaya ongkir tergantung area)
+                          Dikirim kurir (Gratis ongkir area UNNES: Sekaran, Patemon, Kalisegoro, Ngijo)
                         </span>
                       </label>
 
@@ -181,11 +243,11 @@ Terimakasih!`;
                         className="w-full px-5 py-3.5 rounded-2xl bg-white border border-[#E0DBC5] text-[#1A1A1A] placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#306D29] transition-all text-sm sm:text-base"
                       />
                       <span className="text-sm font-semibold text-[#1A1A1A]/80 whitespace-nowrap">
-                        bungkus
+                        pouch
                       </span>
                     </div>
                     <p className="text-xs text-[#1A1A1A]/70 mt-1.5">
-                      Harga satuan: Rp 25.000 / bungkus (isi 5 kantong herbal celup)
+                      Harga satuan: Rp 15.000 / pouch (isi 5 kantong herbal celup)
                     </p>
                   </div>
 
@@ -232,10 +294,6 @@ Terimakasih!`;
                             <option value="QRIS (Semua Bank & E-Wallet)">
                               QRIS (Semua Bank & E-Wallet)
                             </option>
-                            <option value="Transfer Bank BCA">Transfer Bank BCA</option>
-                            <option value="Transfer Bank Mandiri">Transfer Bank Mandiri</option>
-                            <option value="Transfer Bank BRI">Transfer Bank BRI</option>
-                            <option value="Transfer Bank BNI">Transfer Bank BNI</option>
                             <option value="GoPay">GoPay</option>
                             <option value="OVO">OVO</option>
                             <option value="DANA">DANA</option>
@@ -260,6 +318,12 @@ Terimakasih!`;
                       <div className="mt-3 p-3 rounded-xl bg-green-100 border border-green-300 text-[#306D29] text-sm font-semibold flex items-center justify-center gap-2 animate-fade-in">
                         <CheckCircle size={18} weight="fill" />
                         <span>Pesanan berhasil diperbarui ke ringkasan!</span>
+                      </div>
+                    )}
+
+                    {errorMessage && (
+                      <div className="mt-3 p-3 rounded-xl bg-red-100 border border-red-300 text-red-700 text-sm font-semibold flex items-center justify-center gap-2 animate-fade-in">
+                        <span>{errorMessage}</span>
                       </div>
                     )}
                   </div>
@@ -296,7 +360,7 @@ Terimakasih!`;
                     Jumlah barang
                   </span>
                   <p className="font-anton text-2xl sm:text-3xl tracking-wide text-white">
-                    {qty} bungkus
+                    {displayJumlah}
                   </p>
                 </div>
 
@@ -316,7 +380,7 @@ Terimakasih!`;
                     Total pembelian
                   </span>
                   <p className="font-anton text-3xl sm:text-4xl text-[#FBF5DD] tracking-wide">
-                    {formattedTotal}
+                    {displayTotal}
                   </p>
                 </div>
 

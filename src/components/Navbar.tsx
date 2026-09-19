@@ -29,7 +29,7 @@ export default function Navbar() {
   const activeIndex = targetIndex !== null ? targetIndex : routeIndex;
 
   return (
-    <header className="sticky top-0 z-50 w-full bg-[#306D29]/95 backdrop-blur-md transition-all duration-300">
+    <header className="sticky top-0 z-50 w-full backdrop-blur-md transition-all duration-300">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 sm:h-24 flex items-center justify-between">
         {/* Brand Logo */}
         <Link href="/" className="flex items-center gap-3 group">
@@ -39,14 +39,14 @@ export default function Navbar() {
               alt="Logo Masvia"
               width={56}
               height={56}
-              className="w-full h-full object-contain"
+              className="w-full h-full object-contain rounded-full"
               priority
             />
           </div>
         </Link>
 
         {/* Center Pill Navigation with sliding indicator (Desktop & Tablet) */}
-        <nav className="hidden md:flex relative items-center bg-[#FBF5DD] rounded-full p-1.5 shadow-inner min-w-[420px]">
+        <nav className="hidden md:flex relative items-center bg-[#FBF5DD] rounded-full p-1.5 shadow-inner min-w-[340px] lg:min-w-[420px]">
           {/* Animated sliding indicator pill */}
           {activeIndex >= 0 && (
             <div
@@ -66,7 +66,7 @@ export default function Navbar() {
                 key={link.name}
                 href={link.href}
                 onClick={() => setTargetIndex(idx)}
-                className={`relative z-10 flex-1 flex items-center justify-center px-5 py-2.5 rounded-full text-sm font-semibold transition-colors duration-200 text-center select-none ${
+                className={`relative z-10 flex-1 flex items-center justify-center px-3.5 lg:px-5 py-2 lg:py-2.5 rounded-full text-xs lg:text-sm font-semibold will-change-transform transition-transform duration-300 ease-[cubic-bezier(1,0.25,1,0.5)] text-center select-none ${
                   isActive ? "text-white" : "text-[#1A1A1A] hover:text-black"
                 }`}
               >
@@ -76,30 +76,32 @@ export default function Navbar() {
           })}
         </nav>
 
-        {/* Right CTA Button (Desktop) */}
+        {/* Right CTA Button (Desktop & Tablet) */}
         <div className="hidden md:flex items-center">
           <Link
             href="/produk"
-            className="bg-[#FBF5DD] hover:bg-[#FFFDF5] text-[#1A1A1A] text-sm font-semibold px-6 py-4 rounded-full shadow-md hover:shadow-lg transition-all duration-200 flex items-center gap-2 hover:scale-[1.02] active:scale-[0.98]"
+            className="bg-[#FBF5DD] hover:bg-[#FFFDF5] text-[#1A1A1A] text-xs lg:text-sm font-semibold px-4 lg:px-6 py-2.5 lg:py-3 rounded-full shadow-md hover:shadow-lg transition-all duration-200 flex items-center gap-2 hover:scale-[1.02] active:scale-[0.98]"
           >
             <ShoppingCart size={18} weight="bold" />
             <span>Beli sekarang</span>
           </Link>
         </div>
 
-        {/* Mobile Hamburger & Quick CTA */}
+        {/* Mobile Hamburger & Quick CTA (Mobile) */}
         <div className="flex md:hidden items-center gap-2">
           <Link
             href="/produk"
-            className="bg-[#FBF5DD] text-[#1A1A1A] text-xs font-semibold px-4 py-2 rounded-full shadow-sm"
+            className="flex items-center gap-1.5 bg-[#FBF5DD] hover:bg-[#FFFDF5] text-[#1A1A1A] text-xs font-semibold px-3.5 py-2.5 rounded-full shadow-sm whitespace-nowrap active:scale-95 transition-all"
           >
-            Beli sekarang
+            <ShoppingCart size={18} weight="bold" className="shrink-0" />
+            <span>Beli sekarang</span>
           </Link>
           <button
             type="button"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="p-2 rounded-full bg-[#FBF5DD] text-[#1A1A1A] hover:bg-white focus:outline-none"
-            aria-label="Toggle Menu"
+            className="p-2 rounded-full bg-[#FBF5DD] text-[#1A1A1A] hover:bg-white focus:outline-none transition-colors duration-200 active:scale-95"
+            aria-label={mobileMenuOpen ? "Tutup menu" : "Buka menu"}
+            aria-expanded={mobileMenuOpen}
           >
             {mobileMenuOpen ? (
               <X size={24} weight="bold" />
@@ -110,34 +112,46 @@ export default function Navbar() {
         </div>
       </div>
 
-      {/* Mobile Drawer Menu with slide animation */}
-      {mobileMenuOpen && (
-        <div className="md:hidden px-4 pt-2 pb-6 bg-[#306D29] border-t border-[#447B3E] animate-slide-down">
-          <div className="bg-[#FBF5DD] rounded-2xl p-4 flex flex-col gap-2 shadow-lg">
-            {NAV_LINKS.map((link) => {
-              const isActive =
-                link.href === "/"
-                  ? pathname === "/"
-                  : pathname.startsWith(link.href);
+      {/* Mobile Drawer Menu with secondary color background */}
+      <div
+        className={`md:hidden absolute top-full left-0 right-0 w-full grid transition-all duration-300 ease-in-out bg-[#FBF5DD] shadow-2xl border-b border-[#EBE6D0] z-50 ${
+          mobileMenuOpen
+            ? "grid-rows-[1fr] opacity-100 pointer-events-auto"
+            : "grid-rows-[0fr] opacity-0 pointer-events-none"
+        }`}
+      >
+        <div className="overflow-hidden">
+          <div
+            className={`px-4 sm:px-6 py-5 transition-all duration-300 ease-out ${
+              mobileMenuOpen ? "translate-y-0 opacity-100" : "-translate-y-3 opacity-0"
+            }`}
+          >
+            <div className="flex flex-col gap-2 max-w-md mx-auto">
+              {NAV_LINKS.map((link) => {
+                const isActive =
+                  link.href === "/"
+                    ? pathname === "/"
+                    : pathname.startsWith(link.href);
 
-              return (
-                <Link
-                  key={link.name}
-                  href={link.href}
-                  onClick={() => setMobileMenuOpen(false)}
-                  className={`px-5 py-3 rounded-xl text-center font-semibold text-base transition-colors ${
-                    isActive
-                      ? "bg-black text-white shadow"
-                      : "text-[#1A1A1A] hover:bg-[#EBE6D0]"
-                  }`}
-                >
-                  {link.name}
-                </Link>
-              );
-            })}
+                return (
+                  <Link
+                    key={link.name}
+                    href={link.href}
+                    onClick={() => setMobileMenuOpen(false)}
+                    className={`px-5 py-3 rounded-full text-center font-semibold text-base transition-all duration-200 ${
+                      isActive
+                        ? "bg-black text-white shadow-md"
+                        : "text-[#1A1A1A] hover:bg-[#EBE6D0]"
+                    }`}
+                  >
+                    {link.name}
+                  </Link>
+                );
+              })}
+            </div>
           </div>
         </div>
-      )}
+      </div>
     </header>
   );
 }

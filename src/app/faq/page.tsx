@@ -23,7 +23,7 @@ const FAQ_DATA: FAQItem[] = [
   {
     question: "Berapa isi kemasan dan berapa harganya?",
     answer:
-      "Satu bungkus standing pouch Jamu Celup Masvia berisi 5 kantong celup rempah herbal alami (berat bersih 10 gram) dengan harga terjangkau Rp 25.000 per bungkus.",
+      "Satu standing pouch Jamu Celup Masvia berisi 5 kantong celup rempah herbal alami (berat bersih 10 gram) dengan harga terjangkau Rp 15.000 per pouch.",
   },
   {
     question: "Bagaimana cara menyeduh Jamu Celup Masvia yang benar?",
@@ -33,12 +33,12 @@ const FAQ_DATA: FAQItem[] = [
   {
     question: "Di mana saja area pengiriman Masvia?",
     answer:
-      "Saat ini Masvia melayani pemesanan dengan opsi pengiriman kurir lokal maupun ambil sendiri di tempat khusus untuk wilayah Kota Semarang dan Kabupaten Demak.",
+      "Saat ini Masvia melayani pemesanan dengan opsi pengiriman kurir lokal maupun ambil sendiri di tempat khusus untuk wilayah Kota Semarang dan Kabupaten Demak. Pengiriman gratis ongkir khusus untuk area UNNES (Sekaran, Patemon, Kalisegoro, Ngijo).",
   },
   {
     question: "Apa saja metode pembayaran yang diterima?",
     answer:
-      "Kami menerima pembayaran Tunai/Cash (COD / bayar saat barang diterima atau saat ambil di tempat) serta Cashless (QRIS semua bank/e-wallet, transfer BCA, Mandiri, BRI, BNI, GoPay, OVO, DANA, dan ShopeePay).",
+      "Kami menerima pembayaran Tunai/Cash (COD / bayar saat barang diterima atau saat ambil di tempat) serta Cashless (QRIS semua bank/e-wallet, GoPay, OVO, DANA, dan ShopeePay).",
   },
   {
     question: "Bagaimana alur pemesanan produk?",
@@ -59,7 +59,7 @@ export default function FAQPage() {
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
           {/* Header */}
           <div className="text-center space-y-4 pt-4">
-            <h1 className="font-anton text-5xl sm:text-6xl md:text-7xl tracking-wide text-white uppercase">
+            <h1 className="font-anton text-3xl sm:text-5xl md:text-6xl lg:text-7xl tracking-wide text-white uppercase">
               FREQUENTLY ASKED QUESTIONS
             </h1>
             <p className="text-base sm:text-lg text-white/90 max-w-xl mx-auto font-medium">
