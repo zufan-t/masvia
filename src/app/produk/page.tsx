@@ -4,10 +4,11 @@ import { useState } from "react";
 import Image from "next/image";
 import {
   ShoppingCart,
-  WhatsappLogo,
   CheckCircle,
-  Truck,
   Storefront,
+  ArrowSquareOut,
+  DownloadSimple,
+  Info,
 } from "@phosphor-icons/react";
 
 const PRICE_PER_PACK = 15000; // Rp 15.000 per pouch (10 gram, 5 kantong celup)
@@ -17,8 +18,7 @@ export default function ProdukPage() {
   const [opsiPengambilan, setOpsiPengambilan] = useState("Dikirim kurir");
   const [alamat, setAlamat] = useState("");
   const [jumlah, setJumlah] = useState<number | string>(1);
-  const [metodeBayar, setMetodeBayar] = useState<"Cash" | "Cashless">("Cash");
-  const [bankOption, setBankOption] = useState("QRIS");
+  const [metodeBayar, setMetodeBayar] = useState<"QRIS" | "Cash">("QRIS");
   const [addedNotice, setAddedNotice] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
   const [submittedData, setSubmittedData] = useState<{
@@ -34,8 +34,7 @@ export default function ProdukPage() {
   const qty = typeof jumlah === "number" ? Math.max(1, jumlah) : parseInt(jumlah) || 1;
   const totalPembelian = qty * PRICE_PER_PACK;
 
-  const currentMetode =
-    metodeBayar === "Cash" ? "Cash" : `Cashless (${bankOption})`;
+  const currentMetode = metodeBayar;
 
   const formattedTotal = new Intl.NumberFormat("id-ID", {
     style: "currency",
@@ -50,8 +49,8 @@ export default function ProdukPage() {
   const displayMetode = submittedData ? submittedData.metode : "-";
   const displayTotal = submittedData ? submittedData.totalFormatted : "-";
 
-  // Generate WhatsApp Message according to template in design.md
-  const handleWhatsAppCheckout = () => {
+  // Generate Telegram Message according to template in design.md
+  const handleTelegramCheckout = () => {
     let orderToUse = submittedData;
 
     if (!orderToUse) {
@@ -84,6 +83,11 @@ export default function ProdukPage() {
       orderToUse = newOrder;
     }
 
+    const paymentProofInstruction =
+      orderToUse.metode === "QRIS"
+        ? "\nBukti pembayaran: (Lampirkan foto/screenshot bukti pembayaran di sini)"
+        : "\nBukti pembayaran: Bayar di tempat (COD) / (Lampirkan bukti transfer jika bayar via QRIS)";
+
     const message = `Halo Kak!
 Aku mau pesan jamu Masvia dengan keterangan berikut
 Nama: ${orderToUse.nama}
@@ -92,11 +96,12 @@ Alamat: ${orderToUse.alamat}
 Metode pembayaran: ${orderToUse.metode}
 Jumlah barang: ${orderToUse.qty} pouch
 Total pembelian: ${orderToUse.totalFormatted}
+${paymentProofInstruction}
 Terimakasih!`;
 
     const encodedMessage = encodeURIComponent(message);
-    const waUrl = `https://wa.me/628214569052?text=${encodedMessage}`;
-    window.open(waUrl, "_blank");
+    const telegramUrl = `https://t.me/+6289504573745?text=${encodedMessage}`;
+    window.open(telegramUrl, "_blank");
   };
 
   const handleAddToCart = (e: React.FormEvent) => {
@@ -129,6 +134,9 @@ Terimakasih!`;
 
     setAddedNotice(true);
     setTimeout(() => setAddedNotice(false), 3000);
+
+    // Smooth scroll to order summary and QRIS code
+    document.getElementById("order-summary")?.scrollIntoView({ behavior: "smooth" });
   };
 
   return (
@@ -152,7 +160,7 @@ Terimakasih!`;
               </div>
 
               {/* Order Form Card (Cream Container) */}
-              <div className="bg-[#FBF5DD] text-[#1A1A1A] rounded-3xl p-6 sm:p-8 md:p-10 shadow-xl">
+              <div className="bg-[#FBF5DD] text-[#1A1A1A] rounded-3xl p-6 sm:p-8 md:p-10 shadow-xl selection:bg-[#306D29] selection:text-white">
                 <form id="order-form" onSubmit={handleAddToCart} className="space-y-6">
                   {/* Field: Nama */}
                   <div>
@@ -164,18 +172,15 @@ Terimakasih!`;
                       placeholder="Masukan nama anda"
                       value={nama}
                       onChange={(e) => setNama(e.target.value)}
-                      className="w-full px-5 py-3.5 rounded-2xl bg-white border border-[#E0DBC5] text-[#1A1A1A] placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#306D29] transition-all text-sm sm:text-base"
+                      className="w-full px-5 py-3.5 rounded-2xl bg-white border border-[#E0DBC5] text-[#1A1A1A] placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#306D29] transition-all text-sm sm:text-base selection:bg-[#306D29] selection:text-white"
                     />
                   </div>
 
                   {/* Field: Opsi Pengambilan */}
                   <div>
-                    <label className="block text-base sm:text-lg font-bold mb-1 text-[#1A1A1A]">
+                    <label className="block text-base sm:text-lg font-bold mb-3 text-[#1A1A1A]">
                       Opsi pengambilan
                     </label>
-                    <p className="text-xs sm:text-sm text-[#1A1A1A]/70 mb-3 font-medium">
-                      *Gratis ongkir untuk area UNNES (Sekaran, Patemon, Kalisegoro, Ngijo). Area lain disekitar Kota Semarang &amp; Kab. Demak dikenakan biaya ongkir.
-                    </p>
 
                     <div className="space-y-3">
                       {/* Option 1: Dikirim Kurir */}
@@ -188,8 +193,7 @@ Terimakasih!`;
                           onChange={(e) => setOpsiPengambilan(e.target.value)}
                           className="w-4 h-4 text-[#306D29] focus:ring-[#306D29] accent-[#306D29]"
                         />
-                        <span className="font-semibold text-sm sm:text-base flex items-center gap-2">
-                          <Truck size={18} weight="bold" />
+                        <span className="font-semibold text-sm sm:text-base">
                           Dikirim kurir (Gratis ongkir area UNNES: Sekaran, Patemon, Kalisegoro, Ngijo)
                         </span>
                       </label>
@@ -202,7 +206,7 @@ Terimakasih!`;
                             placeholder="Masukkan alamat anda"
                             value={alamat}
                             onChange={(e) => setAlamat(e.target.value)}
-                            className="w-full px-5 py-3 rounded-2xl bg-white border border-[#E0DBC5] text-[#1A1A1A] placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#306D29] text-sm sm:text-base transition-all"
+                            className="w-full px-5 py-3 rounded-2xl bg-white border border-[#E0DBC5] text-[#1A1A1A] placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#306D29] text-sm sm:text-base transition-all selection:bg-[#306D29] selection:text-white"
                           />
                         </div>
                       )}
@@ -217,8 +221,7 @@ Terimakasih!`;
                           onChange={(e) => setOpsiPengambilan(e.target.value)}
                           className="w-4 h-4 text-[#306D29] focus:ring-[#306D29] accent-[#306D29]"
                         />
-                        <span className="font-semibold text-sm sm:text-base flex items-center gap-2">
-                          <Storefront size={18} weight="bold" />
+                        <span className="font-semibold text-sm sm:text-base">
                           Ambil sendiri
                         </span>
                       </label>
@@ -240,7 +243,7 @@ Terimakasih!`;
                           const val = e.target.value;
                           setJumlah(val === "" ? "" : Math.max(1, parseInt(val) || 1));
                         }}
-                        className="w-full px-5 py-3.5 rounded-2xl bg-white border border-[#E0DBC5] text-[#1A1A1A] placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#306D29] transition-all text-sm sm:text-base"
+                        className="w-full px-5 py-3.5 rounded-2xl bg-white border border-[#E0DBC5] text-[#1A1A1A] placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#306D29] transition-all text-sm sm:text-base selection:bg-[#306D29] selection:text-white"
                       />
                       <span className="text-sm font-semibold text-[#1A1A1A]/80 whitespace-nowrap">
                         pouch
@@ -257,7 +260,22 @@ Terimakasih!`;
                       Metode pembayaran
                     </label>
                     <div className="space-y-3">
-                      {/* Cash */}
+                      {/* Option 1: QRIS */}
+                      <label className="flex items-center gap-3 cursor-pointer select-none">
+                        <input
+                          type="radio"
+                          name="metodeBayar"
+                          value="QRIS"
+                          checked={metodeBayar === "QRIS"}
+                          onChange={() => setMetodeBayar("QRIS")}
+                          className="w-4 h-4 text-[#306D29] focus:ring-[#306D29] accent-[#306D29]"
+                        />
+                        <span className="font-semibold text-sm sm:text-base">
+                          QRIS
+                        </span>
+                      </label>
+
+                      {/* Option 2: Cash */}
                       <label className="flex items-center gap-3 cursor-pointer select-none">
                         <input
                           type="radio"
@@ -267,40 +285,10 @@ Terimakasih!`;
                           onChange={() => setMetodeBayar("Cash")}
                           className="w-4 h-4 text-[#306D29] focus:ring-[#306D29] accent-[#306D29]"
                         />
-                        <span className="font-semibold text-sm sm:text-base">Cash (COD / Bayar di Tempat)</span>
+                        <span className="font-semibold text-sm sm:text-base">
+                          Cash (COD / Bayar di Tempat)
+                        </span>
                       </label>
-
-                      {/* Cashless */}
-                      <label className="flex items-center gap-3 cursor-pointer select-none">
-                        <input
-                          type="radio"
-                          name="metodeBayar"
-                          value="Cashless"
-                          checked={metodeBayar === "Cashless"}
-                          onChange={() => setMetodeBayar("Cashless")}
-                          className="w-4 h-4 text-[#306D29] focus:ring-[#306D29] accent-[#306D29]"
-                        />
-                        <span className="font-semibold text-sm sm:text-base">Cashless</span>
-                      </label>
-
-                      {/* Dropdown pilihan bank dan e-wallet */}
-                      {metodeBayar === "Cashless" && (
-                        <div className="pl-7 pt-1">
-                          <select
-                            value={bankOption}
-                            onChange={(e) => setBankOption(e.target.value)}
-                            className="w-full px-5 py-3 rounded-2xl bg-white border border-[#E0DBC5] text-[#1A1A1A] focus:outline-none focus:ring-2 focus:ring-[#306D29] text-sm sm:text-base transition-all cursor-pointer"
-                          >
-                            <option value="QRIS (Semua Bank & E-Wallet)">
-                              QRIS (Semua Bank & E-Wallet)
-                            </option>
-                            <option value="GoPay">GoPay</option>
-                            <option value="OVO">OVO</option>
-                            <option value="DANA">DANA</option>
-                            <option value="ShopeePay">ShopeePay</option>
-                          </select>
-                        </div>
-                      )}
                     </div>
                   </div>
 
@@ -308,7 +296,7 @@ Terimakasih!`;
                   <div className="pt-2">
                     <button
                       type="submit"
-                      className="w-full py-4 rounded-full bg-black hover:bg-neutral-800 text-white font-semibold text-base sm:text-lg shadow-lg hover:shadow-xl transition-all duration-200 active:scale-[0.99] flex items-center justify-center gap-2"
+                      className="w-full py-4 rounded-full bg-black hover:bg-neutral-800 text-white font-semibold text-base sm:text-lg shadow-lg hover:shadow-xl transition-all duration-200 active:scale-[0.99] flex items-center justify-center gap-2 cursor-pointer"
                     >
                       <ShoppingCart size={20} weight="bold" />
                       <span>Masukkan keranjang</span>
@@ -317,7 +305,7 @@ Terimakasih!`;
                     {addedNotice && (
                       <div className="mt-3 p-3 rounded-xl bg-green-100 border border-green-300 text-[#306D29] text-sm font-semibold flex items-center justify-center gap-2 animate-fade-in">
                         <CheckCircle size={18} weight="fill" />
-                        <span>Pesanan berhasil diperbarui ke ringkasan!</span>
+                        <span>Pesanan berhasil dimasukkan ke ringkasan! Silakan cek kode QRIS &amp; total pembayaran di sebelah kanan.</span>
                       </div>
                     )}
 
@@ -332,11 +320,17 @@ Terimakasih!`;
             </div>
 
             {/* RIGHT COLUMN: Order Summary & Checkout Preview */}
-            <div className="lg:col-span-5 lg:sticky lg:top-28 space-y-6">
+            <div id="order-summary" className="lg:col-span-5 lg:sticky lg:top-28 space-y-6">
               <div className="bg-[#306D29] border-2 border-white/20 rounded-3xl p-6 sm:p-8 lg:p-10 shadow-2xl backdrop-blur-sm space-y-6">
+                <div className="border-b border-white/20 pb-4">
+                  <h3 className="font-anton text-2xl text-white tracking-wide">
+                    Ringkasan Pesanan
+                  </h3>
+                </div>
+
                 {/* Field: Nama */}
                 <div>
-                  <span className="text-sm font-bold text-[#FBF5DD]/80 uppercase tracking-wider block mb-1">
+                  <span className="text-xs font-bold text-[#FBF5DD]/80 uppercase tracking-wider block mb-1">
                     Nama
                   </span>
                   <p className="font-anton text-2xl sm:text-3xl tracking-wide text-white break-words">
@@ -346,7 +340,7 @@ Terimakasih!`;
 
                 {/* Field: Alamat */}
                 <div>
-                  <span className="text-sm font-bold text-[#FBF5DD]/80 uppercase tracking-wider block mb-1">
+                  <span className="text-xs font-bold text-[#FBF5DD]/80 uppercase tracking-wider block mb-1">
                     Alamat
                   </span>
                   <p className="font-anton text-xl sm:text-2xl tracking-wide text-white leading-snug break-words">
@@ -356,7 +350,7 @@ Terimakasih!`;
 
                 {/* Field: Jumlah Barang */}
                 <div>
-                  <span className="text-sm font-bold text-[#FBF5DD]/80 uppercase tracking-wider block mb-1">
+                  <span className="text-xs font-bold text-[#FBF5DD]/80 uppercase tracking-wider block mb-1">
                     Jumlah barang
                   </span>
                   <p className="font-anton text-2xl sm:text-3xl tracking-wide text-white">
@@ -366,7 +360,7 @@ Terimakasih!`;
 
                 {/* Field: Metode Pembayaran */}
                 <div>
-                  <span className="text-sm font-bold text-[#FBF5DD]/80 uppercase tracking-wider block mb-1">
+                  <span className="text-xs font-bold text-[#FBF5DD]/80 uppercase tracking-wider block mb-1">
                     Metode pembayaran
                   </span>
                   <p className="font-anton text-2xl sm:text-3xl tracking-wide text-white">
@@ -376,7 +370,7 @@ Terimakasih!`;
 
                 {/* Field: Total Pembelian */}
                 <div className="pt-2 border-t border-white/20">
-                  <span className="text-sm font-bold text-[#FBF5DD]/80 uppercase tracking-wider block mb-1">
+                  <span className="text-xs font-bold text-[#FBF5DD]/80 uppercase tracking-wider block mb-1">
                     Total pembelian
                   </span>
                   <p className="font-anton text-3xl sm:text-4xl text-[#FBF5DD] tracking-wide">
@@ -384,18 +378,111 @@ Terimakasih!`;
                   </p>
                 </div>
 
-                {/* Button Beli Sekarang -> Refer to WhatsApp */}
-                <div className="pt-4">
+                {/* QRIS / PAYMENT SECTION WHEN FORM IS FILLED */}
+                {submittedData ? (
+                  submittedData.metode === "QRIS" ? (
+                    <div className="bg-white text-[#1A1A1A] rounded-2xl p-5 shadow-lg border border-[#E0DBC5] space-y-4 animate-slide-down">
+                      <div className="pb-2 border-b border-gray-100">
+                        <h4 className="font-bold text-base text-[#1A1A1A]">Scan QRIS Pembayaran</h4>
+                      </div>
+
+                      <div className="relative mx-auto max-w-[260px] bg-white p-2 rounded-xl border border-gray-200 shadow-sm text-center">
+                        <Image
+                          src="/images/qris.png"
+                          alt="QRIS Jamu Masvia"
+                          width={1200}
+                          height={1700}
+                          className="w-full h-auto rounded-lg object-contain mx-auto"
+                          priority
+                        />
+                        <div className="mt-3 flex items-center justify-center gap-2">
+                          <a
+                            href="/images/qris.png"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-[#1A1A1A] hover:bg-neutral-800 text-white text-xs font-semibold transition-colors shadow-sm"
+                          >
+                            <ArrowSquareOut size={14} weight="bold" />
+                            <span>Buka QR</span>
+                          </a>
+                          <a
+                            href="/images/qris.png"
+                            download="QRIS-Jamu-Masvia.png"
+                            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-[#306D29] hover:bg-[#22511C] text-white text-xs font-semibold transition-colors shadow-sm"
+                          >
+                            <DownloadSimple size={14} weight="bold" />
+                            <span>Unduh QR</span>
+                          </a>
+                        </div>
+                      </div>
+
+                      {/* Payment instruction box with white background, no border, and black text */}
+                      <div className="bg-white rounded-xl p-3.5 space-y-2 text-[#1A1A1A]">
+                        <div className="flex justify-between items-center text-xs font-bold text-[#1A1A1A]">
+                          <span>Nominal Transfer:</span>
+                          <span className="font-anton text-base tracking-wide text-[#306D29]">
+                            {submittedData.totalFormatted}
+                          </span>
+                        </div>
+                        <hr className="border-gray-200" />
+                        <div className="space-y-1.5 text-xs text-[#1A1A1A]">
+                          <p className="font-bold text-[#1A1A1A]">
+                            Petunjuk Pembayaran:
+                          </p>
+                          <ol className="list-decimal list-inside space-y-1 leading-relaxed text-[11px] sm:text-xs text-[#1A1A1A]">
+                            <li>Scan barcode QRIS di atas melalui m-Banking atau E-Wallet (BCA, Mandiri, BRI, BNI, GoPay, OVO, DANA, ShopeePay, dll).</li>
+                            <li>Pastikan nominal transfer pas senilai <strong className="font-bold">{submittedData.totalFormatted}</strong>.</li>
+                            <li>Simpan <strong>screenshot / foto struk bukti pembayaran</strong>.</li>
+                            <li>Klik tombol <strong>Konfirmasi pesanan</strong> di bawah, lalu <strong>lampirkan gambar bukti transfer</strong> pada pesan Telegram Admin.</li>
+                          </ol>
+                        </div>
+                      </div>
+                    </div>
+                  ) : (
+                    <div className="bg-[#22511C] border-2 border-yellow-400 rounded-2xl p-4 text-white text-xs space-y-2 animate-slide-down">
+                      <div className="flex items-center gap-2 font-bold text-sm text-yellow-300">
+                        <Storefront size={18} weight="bold" />
+                        <span>Metode Pembayaran: Cash (COD)</span>
+                      </div>
+                      <p className="text-white leading-relaxed text-xs">
+                        Pembayaran dilakukan secara tunai langsung di tempat saat pesanan diterima. Anda tidak perlu mentransfer sekarang.
+                      </p>
+                      <p className="text-white/80 text-[11px]">
+                        *Jika ingin membayar non-tunai via QRIS, silakan ganti metode ke QRIS pada formulir.
+                      </p>
+                    </div>
+                  )
+                ) : (
+                  <div className="bg-[#22511C] rounded-2xl p-4 text-white text-xs border-2 border-yellow-400 space-y-1.5 text-center">
+                    <p className="font-semibold text-yellow-300 text-sm">
+                      Formulir Belum Dimasukkan
+                    </p>
+                    <p className="text-white leading-relaxed text-xs">
+                      Silakan isi formulir pesanan di sebelah kiri dan klik <strong>&quot;Masukkan keranjang&quot;</strong> untuk memunculkan kode QRIS pembayaran dan ringkasan pesanan.
+                    </p>
+                  </div>
+                )}
+
+                {/* Button Konfirmasi Pesanan -> Refer to Telegram */}
+                <div className="pt-2 space-y-3">
+                  {submittedData && submittedData.metode === "QRIS" && (
+                    <div className="p-3.5 rounded-xl bg-yellow-400 border-2 border-yellow-400 text-[#1A1A1A] text-xs flex items-center gap-2.5 shadow-md">
+                      <Info size={18} weight="fill" className="text-[#1A1A1A] shrink-0" />
+                      <span className="text-[#1A1A1A] font-medium leading-relaxed">
+                        Harap <strong>lampirkan foto/screenshot bukti transfer</strong> di chat Telegram setelah mengklik tombol di bawah.
+                      </span>
+                    </div>
+                  )}
+
                   <button
                     type="button"
-                    onClick={handleWhatsAppCheckout}
-                    className="w-full py-4 px-6 rounded-full bg-[#FBF5DD] hover:bg-white text-[#1A1A1A] font-bold text-base sm:text-lg shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] flex items-center justify-center gap-3"
+                    onClick={handleTelegramCheckout}
+                    className="w-full py-4 px-6 rounded-full bg-[#FBF5DD] hover:bg-white text-[#1A1A1A] font-bold text-base sm:text-lg shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] flex items-center justify-center gap-3 cursor-pointer selection:bg-[#306D29] selection:text-white"
                   >
-                    <WhatsappLogo size={24} weight="fill" className="text-[#306D29]" />
-                    <span>Beli sekarang</span>
+                    <span>Konfirmasi pesanan</span>
                   </button>
-                  <p className="text-center text-xs text-[#FBF5DD]/80 mt-3 font-medium">
-                    Pesanan Anda akan langsung diteruskan ke WhatsApp Admin Masvia
+                  <p className="text-center text-xs text-[#FBF5DD]/80 mt-1 font-medium">
+                    Pesanan Anda akan langsung diteruskan ke Telegram Admin Masvia
                   </p>
                 </div>
               </div>

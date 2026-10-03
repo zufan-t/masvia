@@ -1,0 +1,221 @@
+{
+  "product_metadata": {
+    "brand_name": "Masvia",
+    "product_name": "Jamu Celup Masvia",
+    "tagline": "Minuman Herbal Anti-Diabetes Praktis",
+    "ingredients": [
+      {
+        "name": "Mahkota Dewa (Phaleria macrocarpa)",
+        "form": "Simplisia daging buah kering",
+        "bioactive_compounds": ["Flavonoid", "Polifenol", "Saponin", "Alkaloid"],
+        "benefits": "Antioksidan, antimikroba alami, mendukung metabolisme glukosa dan manajemen gula darah"
+      },
+      {
+        "name": "Daun Stevia (Stevia rebaudiana)",
+        "form": "Simplisia daun kering",
+        "properties": ["0 Kalori", "0 Indeks Glikemik", "Tingkat manis hingga 300x sukrosa"],
+        "benefits": "Pemanis alami aman bagi penderita diabetes dan obesitas, menetralkan rasa pahit mahkota dewa tanpa gula pasir"
+      }
+    ],
+    "packaging": {
+      "type": "Standing Pouch dengan Ziplock",
+      "dimensions": "9 x 15 cm",
+      "contents": "5 kantong teh celup (food-grade filter bag)",
+      "net_weight": "10 gram (2 gram per kantong)"
+    },
+    "pricing": {
+      "retail_price_idr": 15000,
+      "price_per_pouch": "Rp 15.000",
+      "currency": "IDR"
+    },
+    "shelf_life_months": "6 - 12 bulan",
+    "service_areas": {
+      "free_shipping": ["Area UNNES (Sekaran, Patemon, Kalisegoro, Ngijo)"],
+      "standard_shipping": ["Kota Semarang", "Kabupaten Demak", "Jawa Tengah"],
+      "delivery_method": "Pengiriman Mandiri (Self-Managed Delivery) dan Ambil Sendiri (Pick-Up)"
+    },
+    "payment_methods": [
+      "Cash (COD / Bayar di tempat)",
+      "Cashless (QRIS Semua Bank & E-Wallet)",
+      "E-Wallet (GoPay, OVO, DANA, ShopeePay)",
+      "Transfer Bank"
+    ],
+    "official_contacts": {
+      "whatsapp": "0821-4569-052",
+      "whatsapp_url": "https://wa.me/628214569052",
+      "email": "jamumasvia@gmail.com",
+      "instagram": "@masvia2026",
+      "institution": "Universitas Negeri Semarang (UNNES) - Program PKM-K"
+    }
+  },
+  "knowledge_chunks": [
+    {
+      "id": "MASVIA-FAQ-001",
+      "category": "Pengenalan Produk",
+      "tags": ["apa itu masvia", "pengenalan", "deskripsi produk", "jamu celup", "bahan alami"],
+      "question": "Apa itu Jamu Celup Masvia?",
+      "answer": "Halo Kak! 🌿 Jamu Celup Masvia adalah inovasi minuman herbal antidiabetes praktis yang memadukan khasiat buah Mahkota Dewa dan manis alami daun Stevia. Diformulasikan dalam kantong celup siap seduh (tea bag), Masvia memudahkan Anda menikmati jamu tradisional tanpa rasa pahit berlebih, bebas ampas, dan tanpa perlu repot merebus. Sangat cocok untuk mendampingi gaya hidup sehat Kakak! ✨"
+    },
+    {
+      "id": "MASVIA-FAQ-002",
+      "category": "Komposisi & Rasa",
+      "tags": ["komposisi", "bahan baku", "ingredients", "isi kandungan", "terbuat dari apa"],
+      "question": "Apa saja komposisi dan bahan dari Jamu Masvia?",
+      "answer": "Jamu Celup Masvia terbuat dari 100% bahan alami pilihan: (1) Simplisia Buah Mahkota Dewa Kering yang kaya flavonoid, polifenol, saponin, dan alkaloid sebagai antioksidan serta penjaga metabolisme tubuh. (2) Simplisia Daun Stevia Kering sebagai pemanis alami nol kalori (0 kalori) yang memiliki tingkat kemanisan hingga 300x gula pasir tanpa memicu kenaikan gula darah. Murni herbal tanpa pengawet sintetis dan 100% tanpa gula pasir tambahan."
+    },
+    {
+      "id": "MASVIA-FAQ-003",
+      "category": "Komposisi & Rasa",
+      "tags": ["kenapa manis", "pemanis apa", "aman diabetes", "gula apa", "stevia aman"],
+      "question": "Kenapa Masvia bisa manis padahal untuk penderita diabetes?",
+      "answer": "Rasa manis pada Jamu Celup Masvia bukan dari gula pasir atau pemanis buatan kimiawi, melainkan dari daun Stevia alami Kak! 🍃 Daun stevia mengandung glikosida steviol yang manisnya hingga 300 kali dari gula biasa, namun memiliki 0 kalori dan 0 indeks glikemik. Artinya, tubuh tidak memprosesnya menjadi glukosa darah, sehingga rasa manisnya sangat aman dinikmati penderita diabetes melitus maupun mereka yang sedang diet rendah gula."
+    },
+    {
+      "id": "MASVIA-FAQ-004",
+      "category": "Komposisi & Rasa",
+      "tags": ["apakah pahit", "rasa jamu", "enak ga", "pahit ga", "aftertaste"],
+      "question": "Apakah Jamu Masvia terasa pahit seperti jamu tradisional pada umumnya?",
+      "answer": "Tenang Kak, Masvia tidak pahit menyengat! 🍵 Inovasi formula kami secara tepat menyeimbangkan ekstrak buah mahkota dewa dengan pemanis alami daun stevia. Hasil seduhannya memiliki rasa manis herbal yang lembut, harum menyegarkan, dan tanpa aftertaste pahit yang mengganggu di lidah."
+    },
+    {
+      "id": "MASVIA-FAQ-005",
+      "category": "Manfaat & Kesehatan",
+      "tags": ["manfaat masvia", "khasiat jamu", "kegunaan", "fungsi herbal", "efek kesehatan"],
+      "question": "Apa saja manfaat dan khasiat meminum Jamu Celup Masvia?",
+      "answer": "Rutin meminum Jamu Celup Masvia memberikan berbagai manfaat baik bagi tubuh: 💚 Membantu Manajemen Gula Darah (senyawa aktif saponin dan flavonoid membantu memelihara kestabilan glukosa); 🛡️ Sumber Antioksidan Alami (menangkal radikal bebas dan memperkuat daya tahan); ⚖️ Mendukung Diet Rendah Gula (minuman manis 0 kalori, aman untuk defisit kalori); serta ⚡ Membantu Menjaga Metabolisme Tubuh tetap bugar."
+    },
+    {
+      "id": "MASVIA-FAQ-006",
+      "category": "Manfaat & Kesehatan",
+      "tags": ["diabetes tipe 2", "aman kencing manis", "penderita diabetes", "gula darah tinggi"],
+      "question": "Apakah Masvia aman dikonsumsi oleh penderita diabetes melitus tipe 2?",
+      "answer": "Sangat aman Kak! Masvia dirancang khusus sebagai minuman preventif dan pendamping harian bagi penyandang diabetes melitus. Stevia tidak meningkatkan kadar gula darah, sementara buah mahkota dewa secara ilmiah dan empiris berpotensi membantu mengontrol kadar glukosa dan memperbaiki metabolisme tubuh."
+    },
+    {
+      "id": "MASVIA-FAQ-007",
+      "category": "Manfaat & Kesehatan",
+      "tags": ["ganti obat dokter", "stop obat", "pengganti insulin", "aturan minum obat"],
+      "question": "Apakah Jamu Masvia bisa menggantikan obat resep dokter atau insulin?",
+      "answer": "Jamu Celup Masvia bukan pengganti obat medis maupun suntik insulin ya Kak. 🙏 Masvia adalah minuman herbal pendukung pola hidup sehat. Jika Kakak sedang dalam terapi obat resep dokter, terapi tetap harus dilanjutkan. Jika ingin meminum Masvia, beri jeda waktu sekitar 1–2 jam setelah minum obat dokter."
+    },
+    {
+      "id": "MASVIA-FAQ-008",
+      "category": "Manfaat & Kesehatan",
+      "tags": ["orang sehat", "pencegahan diabetes", "usia muda", "minum sehari-hari"],
+      "question": "Kalau saya tidak memiliki diabetes, apakah boleh minum Masvia?",
+      "answer": "Tentu saja sangat boleh Kak! Masvia sangat baik untuk tindakan pencegahan sejak dini (preventif). Masvia adalah opsi teh herbal harian yang nikmat untuk menjaga asupan gula tetap seimbang dan menurunkan risiko obesitas maupun gangguan metabolik."
+    },
+    {
+      "id": "MASVIA-FAQ-009",
+      "category": "Manfaat & Kesehatan",
+      "tags": ["maag", "asam lambung", "gerd", "aman lambung"],
+      "question": "Apakah Masvia aman untuk lambung atau penderita maag/GERD?",
+      "answer": "Masvia tidak mengandung kafein dan ramah bagi pencernaan. Jika Kakak memiliki riwayat maag atau asam lambung sensitif, kami anjurkan meminum Jamu Masvia hangat setelah makan agar lambung tetap nyaman. 🍵"
+    },
+    {
+      "id": "MASVIA-FAQ-010",
+      "category": "Manfaat & Kesehatan",
+      "tags": ["ibu hamil", "ibu menyusui", "bumil", "busui", "promil"],
+      "question": "Apakah Masvia aman untuk ibu hamil dan ibu menyusui?",
+      "answer": "Demi kehati-hatian ekstra bagi kesehatan Ibu dan buah hati, kami menyarankan ibu hamil dan menyusui untuk berkonsultasi terlebih dahulu dengan dokter spesialis atau bidan sebelum mengonsumsi olahan herbal mahkota dewa."
+    },
+    {
+      "id": "MASVIA-FAQ-011",
+      "category": "Penyajian & Aturan Minum",
+      "tags": ["cara seduh", "cara buat", "cara pakai", "cara penyajian", "takaran air"],
+      "question": "Bagaimana cara menyeduh Jamu Celup Masvia yang benar?",
+      "answer": "Sangat mudah dan praktis: (1) Masukkan 1 kantong celup Masvia ke dalam cangkir. (2) Tuang 150–200 ml air mendidih. (3) Diamkan dan celup-celupkan selama 3–5 menit sampai air seduhan berubah kuning kecokelatan herbal dan aromanya tercium harum. (4) Angkat kantong celup, dan Jamu Masvia siap diminum selagi hangat tanpa perlu ditambah gula lagi. 🍵"
+    },
+    {
+      "id": "MASVIA-FAQ-012",
+      "category": "Penyajian & Aturan Minum",
+      "tags": ["dosis harian", "berapa kali sehari", "aturan konsumsi", "waktu minum"],
+      "question": "Berapa kali sehari anjuran minum Jamu Masvia?",
+      "answer": "Untuk pemeliharaan kesehatan dan pencegahan: cukup 1 kantong per hari (pagi setelah sarapan atau malam hari). Untuk membantu kontrol gula darah atau diet: disarankan 1–2 kantong per hari (pagi dan sore/malam)."
+    },
+    {
+      "id": "MASVIA-FAQ-013",
+      "category": "Penyajian & Aturan Minum",
+      "tags": ["minum es", "dingin", "es jamu", "campur es batu"],
+      "question": "Apakah Masvia bisa dinikmati dingin pakai es batu?",
+      "answer": "Bisa banget Kak! 🧊 Seduh terlebih dahulu 1 kantong celup dengan 100 ml air mendidih selama 5 menit agar senyawa herbal dan manis stevianya terekstrak optimal, lalu tambahkan es batu secukupnya. Sangat menyegarkan diminum saat cuaca panas tanpa takut asupan gula berlebih!"
+    },
+    {
+      "id": "MASVIA-FAQ-014",
+      "category": "Harga & Kemasan",
+      "tags": ["harga berapa", "harga satuan", "pricelist", "biaya", "pouch"],
+      "question": "Berapa harga 1 kemasan Jamu Celup Masvia?",
+      "answer": "Harga resmi Jamu Celup Masvia sangat terjangkau, yaitu Rp 15.000 per kemasan standing pouch. Satu pouch berisi 5 kantong celup herbal (total netto 10 gram)."
+    },
+    {
+      "id": "MASVIA-FAQ-015",
+      "category": "Harga & Kemasan",
+      "tags": ["isi berapa", "isi kemasan", "isi pouch", "berapa sachet", "berat netto"],
+      "question": "Satu pouch Masvia isinya berapa kantong celup?",
+      "answer": "Satu kemasan standing pouch berisi 5 kantong celup higienis berstandar food-grade (netto 10 gram). Kemasan dilengkapi ziplock pengaman sehingga kantong yang belum digunakan tetap higienis dan kedap udara."
+    },
+    {
+      "id": "MASVIA-FAQ-016",
+      "category": "Harga & Kemasan",
+      "tags": ["expired", "masa simpan", "tahan berapa lama", "kedaluwarsa"],
+      "question": "Berapa lama masa simpan (kedaluwarsa) produk Masvia?",
+      "answer": "Produk memiliki masa simpan 6 hingga 12 bulan karena diproses dari simplisia kering kadar air rendah dan dikemas dalam standing pouch ber-ziplock rapat. Simpan di tempat yang sejuk, kering, dan pastikan klip ziplock selalu tertutup rapat."
+    },
+    {
+      "id": "MASVIA-FAQ-017",
+      "category": "Pemesanan & Pengiriman",
+      "tags": ["cara order", "cara pesan", "beli di mana", "alur belanja", "pesan whatsapp"],
+      "question": "Bagaimana cara melakukan pemesanan Jamu Masvia?",
+      "answer": "Kakak bisa langsung memesan lewat WhatsApp resmi kami dengan format: Nama, Opsi Pengambilan (Kirim Kurir / Ambil Sendiri), Alamat Lengkap, Jumlah Pouch, dan Metode Pembayaran. Atau cukup buka website Masvia, pilih jumlah di halaman Produk, lalu klik 'Beli Sekarang' agar format pesan otomatis terisi ke WhatsApp kami! 📦"
+    },
+    {
+      "id": "MASVIA-FAQ-018",
+      "category": "Pemesanan & Pengiriman",
+      "tags": ["gratis ongkir", "free ongkir", "unnes", "sekaran", "patemon", "kalisegoro", "ngijo"],
+      "question": "Apakah ada promo gratis ongkir?",
+      "answer": "Ada Kak! 🎉 Kami menyediakan GRATIS ONGKIR khusus pengiriman ke area kampus UNNES Semarang (meliputi wilayah Sekaran, Patemon, Kalisegoro, dan Ngijo). Pesanan diantar langsung oleh tim kami ke alamat Kakak."
+    },
+    {
+      "id": "MASVIA-FAQ-019",
+      "category": "Pemesanan & Pengiriman",
+      "tags": ["area kirim", "jangkauan pengiriman", "semarang", "demak", "luar semarang"],
+      "question": "Di mana saja area pengantaran Jamu Masvia?",
+      "answer": "Layanan pengantaran mandiri langsung oleh tim beroperasi di seluruh Kota Semarang dan Kabupaten Demak. Untuk alamat di luar area tersebut, kami siap melayani pengiriman via ekspedisi reguler (J&T/JNE/SiCepat). Hubungi admin kami untuk pengecekan ongkir termurah ke wilayah Kakak ya!"
+    },
+    {
+      "id": "MASVIA-FAQ-020",
+      "category": "Pemesanan & Pengiriman",
+      "tags": ["ambil sendiri", "ambil di tempat", "pick up", "lokasi ambil"],
+      "question": "Apakah bisa pesan dengan opsi Ambil Sendiri (Pick-Up)?",
+      "answer": "Bisa banget Kak! Kakak dapat memilih opsi Ambil Sendiri di titik temu yang disepakati (area kampus UNNES Sekaran Semarang atau wilayah Demak). Hubungi kami melalui chat untuk koordinasi waktu dan lokasi pengambilan."
+    },
+    {
+      "id": "MASVIA-FAQ-021",
+      "category": "Pembayaran",
+      "tags": ["metode pembayaran", "bayar pakai apa", "bisa cod", "qris", "transfer"],
+      "question": "Apa saja metode pembayaran yang tersedia?",
+      "answer": "Kami menerima: (1) Cash / COD (pembayaran tunai saat barang sampai di tangan atau saat ambil di tempat); (2) Cashless via QRIS (dapat di-scan dengan semua M-Banking dan E-Wallet seperti GoPay, OVO, DANA, ShopeePay); serta (3) Transfer Bank. Detail pembayaran akan diberikan admin setelah rincian order terkonfirmasi."
+    },
+    {
+      "id": "MASVIA-FAQ-022",
+      "category": "Profil Usaha & Legalitas",
+      "tags": ["produsen", "siapa pembuat", "pkmk", "unnes", "asal usul"],
+      "question": "Siapakah pembuat Jamu Celup Masvia?",
+      "answer": "Jamu Celup Masvia digagas dan diproduksi oleh tim mahasiswa Universitas Negeri Semarang (UNNES) melalui Program Kreativitas Mahasiswa Kewirausahaan (PKM-K), didampingi oleh dosen pembimbing di bidang matematika, sains data, lingkungan, dan farmasi herbal."
+    },
+    {
+      "id": "MASVIA-FAQ-023",
+      "category": "Bantuan & Garansi",
+      "tags": ["komplain", "barang rusak", "kemasan cacat", "bocor", "retur", "garansi"],
+      "question": "Bagaimana jika kemasan yang saya terima cacat atau kantong celup robek?",
+      "answer": "Mohon maaf atas ketidaknyamanan tersebut Kak! 🙏 Masvia memberikan Garansi Penggantian Produk 100% Gratis. Silakan kirimkan foto/video kemasan yang rusak ke nomor WhatsApp ini, dan tim kami akan langsung mengirimkan produk pengganti baru tanpa biaya tambahan."
+    },
+    {
+      "id": "MASVIA-FAQ-024",
+      "category": "Bantuan & Kontak",
+      "tags": ["bicara admin", "operator manusia", "CS manusia", "hubungi staf", "kontak langsung"],
+      "question": "Bisakah saya berbicara langsung dengan staf / admin manusia?",
+      "answer": "Tentu saja Kak! Chat Kakak akan langsung diteruskan ke Admin Tim Masvia. Silakan tuliskan pertanyaan atau kendala Kakak di sini, admin kami akan segera merespons secepatnya. Terima kasih atas kesabarannya! 💚"
+    }
+  ]
+}

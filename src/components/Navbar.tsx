@@ -76,26 +76,32 @@ export default function Navbar() {
           })}
         </nav>
 
-        {/* Right CTA Button (Desktop & Tablet) */}
-        <div className="hidden md:flex items-center">
-          <Link
-            href="/produk"
-            className="bg-[#FBF5DD] hover:bg-[#FFFDF5] text-[#1A1A1A] text-xs lg:text-sm font-semibold px-4 lg:px-6 py-2.5 lg:py-3 rounded-full shadow-md hover:shadow-lg transition-all duration-200 flex items-center gap-2 hover:scale-[1.02] active:scale-[0.98]"
-          >
-            <ShoppingCart size={18} weight="bold" />
-            <span>Beli sekarang</span>
-          </Link>
-        </div>
+        {/* Right CTA Button (Desktop & Tablet) - hidden on /produk page */}
+        {!pathname?.startsWith("/produk") ? (
+          <div className="hidden md:flex items-center">
+            <Link
+              href="/produk"
+              className="bg-[#FBF5DD] hover:bg-[#FFFDF5] text-[#1A1A1A] text-xs lg:text-sm font-semibold px-4 lg:px-6 py-2.5 lg:py-3 rounded-full shadow-md hover:shadow-lg transition-all duration-200 flex items-center gap-2 hover:scale-[1.02] active:scale-[0.98]"
+            >
+              <ShoppingCart size={18} weight="bold" />
+              <span>Beli sekarang</span>
+            </Link>
+          </div>
+        ) : (
+          <div className="hidden md:block w-12 sm:w-14" aria-hidden="true" />
+        )}
 
         {/* Mobile Hamburger & Quick CTA (Mobile) */}
         <div className="flex md:hidden items-center gap-2">
-          <Link
-            href="/produk"
-            className="flex items-center gap-1.5 bg-[#FBF5DD] hover:bg-[#FFFDF5] text-[#1A1A1A] text-xs font-semibold px-3.5 py-2.5 rounded-full shadow-sm whitespace-nowrap active:scale-95 transition-all"
-          >
-            <ShoppingCart size={18} weight="bold" className="shrink-0" />
-            <span>Beli sekarang</span>
-          </Link>
+          {!pathname?.startsWith("/produk") && (
+            <Link
+              href="/produk"
+              className="flex items-center gap-1.5 bg-[#FBF5DD] hover:bg-[#FFFDF5] text-[#1A1A1A] text-xs font-semibold px-3.5 py-2.5 rounded-full shadow-sm whitespace-nowrap active:scale-95 transition-all"
+            >
+              <ShoppingCart size={18} weight="bold" className="shrink-0" />
+              <span>Beli sekarang</span>
+            </Link>
+          )}
           <button
             type="button"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
